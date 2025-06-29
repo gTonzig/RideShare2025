@@ -243,14 +243,13 @@ FROM `rideshare`.`feedback_autista`
 GROUP BY id_autista;
 
 -- -----------------------------------------------------
--- Queries
+-- Query
 -- -----------------------------------------------------
--- 1) Semplice: elenco viaggi ancora aperti
+
 SELECT * 
 FROM `rideshare`.`viaggio`
 WHERE chiuso = FALSE;
 
--- 2) Intermedia: numero di prenotazioni accettate per viaggio
 SELECT
   v.id_viaggio,
   v.citta_partenza,
@@ -261,7 +260,6 @@ LEFT JOIN `rideshare`.`prenotazione` p
   ON v.id_viaggio = p.id_viaggio AND p.stato = 'ACCEPTED'
 GROUP BY v.id_viaggio;
 
--- 3) Difficile: per ciascun autista con ≥5 viaggi e voto medio ≥4.5, calcola tot. incasso e ordina
 SELECT
   sub.id_autista,
   sub.autista,
